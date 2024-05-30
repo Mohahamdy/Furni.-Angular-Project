@@ -1,0 +1,95 @@
+<form [formGroup]="ProductForm" class="form-control d-flex flex-column align-items-center p-3 w-50 mx-auto my-5  shadow"
+    (submit)="FormHandle()">
+    <h3 class="text-muted text-center m-5">{{id==0?"Add Product":"Edit Product"}}</h3>
+    <div class="mb-3 w-75">
+        <label for="ProductName" class="form-label fw-bold mx-1">Name</label>
+        <input type="text" pInputText class="form-control rounded-3" id="ProductName" name="ProductName"
+            formControlName="name">
+        @if (getName.touched) {
+        @if(getName.hasError('required')){
+        <span class="text text-danger">Name is required</span>
+        }@else if (getName.hasError('minlength')) {
+        <span class="text text-danger">Name should be more than 3 characters</span>
+        }@else if (getName.hasError('maxlength')) {
+        <span class="text text-danger">Name should be less than 50 characters</span>
+        }
+        }
+    </div>
+    <div class="mb-3 w-75">
+        <label for="description" class="form-label fw-bold mx-1">Description</label>
+        <input type="text" class="form-control rounded-3" id="description" name="description"
+            formControlName="description">
+        @if (getDescription.touched) {
+        @if(getDescription.hasError('required')){
+        <span class="text text-danger">Description is required</span>
+        }@else if (getDescription.hasError('minlength')) {
+        <span class="text text-danger">Description should be more than 5 characters</span>
+        }@else if (getDescription.hasError('maxlength')) {
+        <span class="text text-danger">Description should be less than 100 characters</span>
+        }
+        }
+    </div>
+    <div class="mb-3 w-75">
+        <label for="price" class="form-label fw-bold mx-1">Price</label>
+        <input type="number" class="form-control rounded-3" id="price" name="price" formControlName="price">
+        @if (getPrice.touched) {
+        @if(getPrice.hasError('required')){
+        <span class="text text-danger">Price is required</span>
+        }@else if (getPrice.hasError('min')) {
+        <span class="text text-danger">Price should be more than $0</span>
+        }
+        }
+    </div>
+    <div class="mb-3 w-75">
+        <label for="quantity" class="form-label fw-bold mx-1">Quantity</label>
+        <input type="number" class="form-control rounded-3" id="quantity" name="quantity" formControlName="quantity">
+        @if (getQuantity.touched) {
+        @if(getQuantity.hasError('required')){
+        <span class="text text-danger">Quantity is required</span>
+        }@else if (getQuantity.hasError('min')) {
+        <span class="text text-danger">Quantity should started from 0</span>
+        }
+        }
+    </div>
+    <div class="mb-3 w-75">
+        <label for="discount" class="form-label fw-bold mx-1">Discount</label>
+        <input type="number" class="form-control rounded-3" id="discount" name="discount" formControlName="discount">
+        @if (getDiscount.touched) {
+        @if(getDiscount.hasError('required')){
+        <span class="text text-danger">Quantity is required</span>
+        }@else if (getDiscount.hasError('min')) {
+        <span class="text text-danger">Quantity should be started from 0</span>
+        }@else if (getDiscount.hasError('max')) {
+        <span class="text text-danger">Quantity should be less than 100</span>
+        }
+        }
+    </div>
+    <div class="mb-3 w-75">
+        <label for="image" class="form-label fw-bold mx-1">Image</label>
+        <input type="file" class="form-control rounded-3" id="image" name="image" (change)="onFileSelected($event)"
+            accept="image/*">
+        @if (getImage.touched) {
+        @if(getImage.hasError('required')){
+        <span class="text text-danger">Image is required</span>
+        }}
+    </div>
+    <div class="mb-3 w-75">
+        <label for="categoryId" class="form-label fw-bold mx-1">Category</label>
+        <select class="form-select rounded-3" id="categoryId" name="categoryId" formControlName="categoryId">
+            @for (category of categories;track $index){
+            <option [value]="category.id">{{category.name}}</option>
+            }
+        </select>
+        @if (getCategoryId.touched) {
+        @if(getCategoryId.hasError('required')){
+        <span class="text text-danger">Category is required</span>
+        }
+        }
+    </div>
+    <div class="my-2 w-75 d-flex  justify-content-center gap-3">
+        <button type="submit" class="btn btn-success  w-25"
+            [style]="{'background-color':'#3b5d50'}">{{id==0?"Add":"Edit"}}</button>
+        <button class="btn btn-secondary  w-25" [routerLink]="['/dashboard/products']">Back To
+            list</button>
+    </div>
+</form>

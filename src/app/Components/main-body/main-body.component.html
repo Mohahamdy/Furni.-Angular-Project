@@ -1,0 +1,136 @@
+<!-- Start Hero Section -->
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
+                    <p class="mb-4">Elevate your space with our curated selection of stylish and functional furniture.
+                        Discover the perfect pieces to
+                        transform your home at our store today.</p>
+                    <p>
+                        <a href="" class="btn btn-secondary me-2" [routerLink]="['/shop']">Shop Now</a>
+                        <a href="" class="btn btn-white-outline">Explore</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="hero-img-wrap">
+                    <img src="../../../assets/website/couch.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Hero Section -->
+
+<!-- Start Product Section -->
+<div class="product-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+                <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
+                <p class="mb-4">Indulge in the timeless elegance of our furniture, expertly handcrafted using only the
+                    finest materials to elevate your
+                    living space with unparalleled quality and charm.</p>
+                <p><a href="" class="btn" [routerLink]="['/shop']">Explore</a></p>
+            </div>
+
+            @for (product of products; track $index) {
+            <div class="col-md-4 col-lg-3 mb-5 mb-md-0">
+                <a class="product-item" href="cart.html">
+                    <img src={{product.image}} class="img-fluid product-thumbnail rounded-5">
+                    <h3 class="product-title">{{product.name}}</h3>
+                    <strong class="product-price">
+                        @if (product.discount == 0) {
+                        {{product.price | currency}}
+                        }@else {
+                        <del style="color: #ff6969;">{{product.price | currency}}</del> {{(product.price *
+                        (100 - product.discount)
+                        / 100) |
+                        currency}}
+                        }
+                    </strong>
+
+
+                    <span class="icon-cross">
+                        <img src="../../../assets/website/cross.svg" class="img-fluid">
+                    </span>
+                </a>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- End Product Section -->
+
+<!-- Start Why Choose Us Section -->
+<div class="why-choose-section">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-6">
+                <h2 class="section-title">Why Choose Us</h2>
+                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit
+                    imperdiet dolor tempor tristique.</p>
+
+                <div class="row my-5">
+                    <div class="col-6 col-md-6">
+                        <div class="feature">
+                            <div class="icon">
+                                <img src="../../../assets/website/truck.svg" alt="Image" class="imf-fluid">
+                            </div>
+                            <h3>Fast &amp; Free Shipping</h3>
+                            <p>This service ensures that your items are delivered promptly and without any additional
+                                cost for shipping.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-6">
+                        <div class="feature">
+                            <div class="icon">
+                                <img src="../../../assets/website/bag.svg" alt="Image" class="imf-fluid">
+                            </div>
+                            <h3>Easy to Shop</h3>
+                            <p>This feature aims to streamline the shopping experience, making it simple and convenient
+                                for customers to find.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-6">
+                        <div class="feature">
+                            <div class="icon">
+                                <img src="../../../assets/website/support.svg" alt="Image" class="imf-fluid">
+                            </div>
+                            <h3>24/7 Support</h3>
+                            <p>This service ensures continuous assistance and guidance for customers at any time of day
+                                or night.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-6">
+                        <div class="feature">
+                            <div class="icon">
+                                <img src="../../../assets/website/return.svg" alt="Image" class="imf-fluid">
+                            </div>
+                            <h3>Hassle Free Returns</h3>
+                            <p>This policy guarantees a straightforward and smooth process for returning items,
+                                promising a hassle-free experience.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="img-wrap">
+                    <img src="../../../assets/website/why-choose-us-img.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Why Choose Us Section -->

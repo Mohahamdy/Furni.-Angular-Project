@@ -1,0 +1,68 @@
+<!-- Start Hero Section -->
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Shop</h1>
+                </div>
+            </div>
+            <div class="col-lg-7">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Hero Section -->
+<div class="untree_co-section product-section before-footer-section">
+    <div class="d-flex  justify-content-center">
+        <span id="btn-con" style="margin-bottom: 40px;" class="p-3 mx-3 rounded-3">
+            <!-- <button class="filter-button gradient mx-2 rounded-4" (click)="all()">All</button>
+            <button class="filter-button gradient mx-2 rounded-4" (click)="fur()">Furniture</button>
+            <button class="filter-button gradient mx-2 rounded-4" (click)="acc()">Accessories</button>
+            <button class="filter-button gradient mx-2 rounded-4" (click)="li()">Lighting</button> -->
+            <button pButton type="button" label="All" class="p-button-outlined  p-button-raised mx-2"
+                [style]="{'color':'#497363','border':'#497363' ,'border-radius' : '19px'}" (click)="all()"></button>
+            <button pButton type="button" label="Furniture" class="p-button-outlined p-button-raised mx-2"
+                [style]="{'color':'#497363','border':'#497363 ' ,'border-radius' : '19px'}" (click)="fur()"></button>
+            <button pButton type="button" label="Accessories" class="p-button-outlined  p-button-raised mx-2"
+                [style]="{'color':'#497363','border':'#497363 ' ,'border-radius' : '19px'}" (click)="acc()"></button>
+            <button pButton type="button" label="Lighting" class="p-button-outlined  p-button-raised mx-2"
+                [style]="{'color':'#497363','border':'#497363 ' ,'border-radius' : '19px'}" (click)="li()"></button>
+        </span>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Start Column 1 -->
+            @for (product of products; track $index) {
+            <div id="con" class="col-4 col-md-4 col-lg-3 mb-5">
+                @if(product.quantity == 0){<span id="stock">out of Stock</span>}
+                @else if (product.quantity < 3 && product.quantity> 0) {<span id="stock"
+                        style="background-color: rgb(228 228 32 / 77%)">low
+                        Stock</span>}
+                    <a class="product-item">
+                        <img src={{product.image}} style="height: 317px;"
+                            class="img-fluid product-thumbnail w-75 rounded-5">
+                        <h3 class="product-title">{{product.name}}</h3>
+                        <strong class="product-price">
+                            @if (product.discount == 0) {
+                            {{product.price | currency}}
+                            }@else {
+                            <del style="color: #ff6969;">{{product.price | currency}}</del> {{(product.price *
+                            (100 - product.discount)
+                            / 100) |
+                            currency}}
+                            }
+                        </strong>
+
+                        <span class="icon-cross">
+                            <img src="../../../assets/website/cross.svg" class="img-fluid">
+                        </span>
+                    </a>
+            </div>
+            }
+
+            <!-- End Column 1 -->
+        </div>
+    </div>
+</div>

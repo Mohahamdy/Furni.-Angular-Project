@@ -1,0 +1,45 @@
+<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark" arial-label="Furni navigation bar">
+
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+            aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+            <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                <li class="nav-item active" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}">
+                    <a class="nav-link" [routerLink]="['/']">Home</a>
+                </li>
+                <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link"
+                        [routerLink]="['/shop']">Shop</a></li>
+                @if (isAdmin()) {
+                <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link"
+                        [routerLink]="['/dashboard/products']">Products</a></li>
+                <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"><a class="nav-link"
+                        [routerLink]="['/dashboard/categories']">Categories</a></li>
+                }
+            </ul>
+
+            <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5" style="padding-top: 11px;">
+                <li>
+                    @if (!isLogedIn()) {
+                    <a class="nav-link" [routerLink]="['/login']">
+                        <img src="../../../assets/website/user.svg" style="padding-bottom: 6px;">
+                    </a>
+                    }@else {
+                    <i style="font-size: 22px; padding-top: 7px; color: white; cursor: pointer;"
+                        class="bi bi-box-arrow-left" (click)="logout()"></i>
+                    }
+                </li>
+                @if (isLogedIn()) {
+                <li style="color: white; font-weight: bold; font-family: 'bootstrap-icons';margin-right: 0;">
+                    <p style="padding-top: 2px;">Hi, {{getUserName()}}</p>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

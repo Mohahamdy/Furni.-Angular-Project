@@ -1,0 +1,42 @@
+<div style="margin: auto; ">
+    <p-table [value]="categories" [tableStyle]="{'min-width': '60rem','padding':'20px'}" [paginator]="true" [rows]="3">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                All Categories
+                <p-button id="btn" label="+ Category" [raised]=" true" severity="info"
+                    [routerLink]="['/dashboard/categories','edit',0]"
+                    [style]="{'width':'135px','height': '41px','border-radius':' 25px','background-color':'#3b5d50','border': '1px solid #fff'}"></p-button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Products Name</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+            <tr>
+                <td>{{category.id}}</td>
+                <td>{{category.name}}</td>
+                <td>
+                    @for (item of category.productNames; track $index) {
+                    {{$index != (category.productNames.length-1) ? item+", ": item}}
+                    }
+                </td>
+                <td>
+                    <i class="bi bi-pencil-square mx-1" style="cursor: pointer;font-size: 19px;"
+                        [routerLink]="['/dashboard/categories','edit',category.id]"></i>
+                    <i class="bi bi-trash-fill mx-1 text-danger" style="cursor: pointer;font-size: 19px;"
+                        (click)="delete(category.id)"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{categories ? categories.length : 0 }} Category.
+            </div>
+        </ng-template>
+    </p-table>
+</div>

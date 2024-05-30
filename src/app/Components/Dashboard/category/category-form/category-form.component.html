@@ -1,0 +1,24 @@
+<form [formGroup]="ProductForm" class="form-control d-flex flex-column align-items-center p-3 w-50 mx-auto my-5  shadow"
+    (submit)="FormHandle()">
+    <h3 class="text-muted text-center m-5">{{id==0?"Add Category":"Edit Category"}}</h3>
+    <div class="mb-3 w-75">
+        <label for="ProductName" class="form-label fw-bold mx-1">Name</label>
+        <input type="text" pInputText class="form-control rounded-3" id="ProductName" name="ProductName"
+            formControlName="name">
+        @if (getName.touched) {
+        @if(getName.hasError('required')){
+        <span class="text text-danger">Name is required</span>
+        }@else if (getName.hasError('minlength')) {
+        <span class="text text-danger">Name should be more than 3 characters</span>
+        }@else if (getName.hasError('maxlength')) {
+        <span class="text text-danger">Name should be less than 50 characters</span>
+        }
+        }
+    </div>
+    <div class="my-2 w-75 d-flex  justify-content-center gap-3">
+        <button type="submit" class="btn btn-success  w-25"
+            [style]="{'background-color':'#3b5d50'}">{{id==0?"Add":"Edit"}}</button>
+        <button class="btn btn-secondary  w-25" [routerLink]="['/dashboard/categories']">Back To
+            list</button>
+    </div>
+</form>

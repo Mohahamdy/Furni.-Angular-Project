@@ -1,0 +1,62 @@
+<div style="margin: auto; ">
+    <p-table [value]="products" [tableStyle]="{'min-width': '60rem','padding':'20px'}" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                All Products
+                <p-button id="btn" label="+ product" [raised]=" true" [routerLink]="['/dashboard/products','edit',0]"
+                    [style]="{'width':'119px','height': '41px','border-radius':'25px','background-color':'#3b5d50','border': '1px solid #fff'}"></p-button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td><img [src]="product.image" [alt]="product.name" width="120" class="shadow-4" />
+                </td>
+                <td>{{product.price | currency:'USD'}}</td>
+                <td>{{product.categoryName}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.discount == 0?"None":product.discount+"%"}}</td>
+                <td>
+                    <i class="bi bi-eye mx-1 text-warning" style="cursor: pointer;font-size: 19px;"
+                        (click)="Display(product.id)"></i>
+                    <i class="bi bi-pencil-square mx-1" style="cursor: pointer;font-size: 19px;"
+                        [routerLink]="['/dashboard/products','edit',product.id]"></i>
+                    <i class="bi bi-trash-fill mx-1 text-danger" style="cursor: pointer;font-size: 19px;"
+                        (click)="delete(product.id)"></i>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{products ? products.length : 0 }} products.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<p-dialog header="Product info" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false">
+    <div class="d-flex  justify-content-center m-5 ">
+        <p-card header="{{product?.name}}" subheader="{{product?.categoryName}}" [style]="{ width: '400px'}"
+            class="shadow m-5 text-center ">
+            <ng-template pTemplate="header">
+                <img alt="Card" src={{product?.image}} />
+            </ng-template>
+            <p>Price: <strong>${{product?.price}}</strong></p>
+            <p>Quantity: <strong>{{product?.quantity}}</strong></p>
+            <p>Discount: <strong>{{product?.discount}}%</strong></p>
+        </p-card>
+    </div>
+</p-dialog>
+<!-- [routerLink]="['/dashboard/products','details',product.id]" -->
